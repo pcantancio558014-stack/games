@@ -1,0 +1,23 @@
+package Gaming105;
+
+import javax.swing.*;
+
+public class Mage extends GameCharacter {
+
+    public Mage(String name) {
+        super(name, 20); 
+    }
+
+    
+    public void attack(GameCharacter opponent) {
+        JOptionPane.showMessageDialog(null, name + " casts Fireball! (20 damage)");
+        opponent.hp -= attackDamage;
+    }
+
+   
+    public void specialMove(GameCharacter opponent) {
+        int damage = (int)(Math.random() * 21 + 10); // 10–30
+        JOptionPane.showMessageDialog(null, name + " uses Secret Power! (" + damage + " damage)");
+        opponent.hp -= damage;
+    }
+}
