@@ -1,0 +1,23 @@
+package Gaming105;
+
+import javax.swing.*;
+
+public class Warrior extends GameCharacter {
+
+    public Warrior(String name) {
+        super(name, 15); 
+    }
+
+   
+    public void attack(GameCharacter opponent) {
+        JOptionPane.showMessageDialog(null, name + " swings a mighty sword! (15 damage)");
+        opponent.hp -= attackDamage;
+    }
+
+ 
+    public void specialMove(GameCharacter opponent) {
+        int damage = (int)(Math.random() * 31 + 5); // 5–35
+        JOptionPane.showMessageDialog(null, name + " uses Shield Bash! (" + damage + " damage)");
+        opponent.hp -= damage;
+    }
+}
