@@ -1,0 +1,25 @@
+package Gaming105;
+
+import javax.swing.*;
+
+public abstract class GameCharacter {
+    String name;
+    int hp = 100;
+    int attackDamage;
+
+    public GameCharacter(String name, int attackDamage) {
+        this.name = name;
+        this.attackDamage = attackDamage;
+    }
+
+    public abstract void attack(GameCharacter opponent);
+    public abstract void specialMove(GameCharacter opponent);
+
+    public void showName() {
+        JOptionPane.showMessageDialog(null, "Character: " + name);
+    }
+
+    public boolean isAlive() {
+        return hp > 0;
+    }
+}
