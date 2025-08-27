@@ -1,0 +1,63 @@
+package Gaming105;
+
+import javax.swing.*;
+
+public class Main {
+    public static void main(String[] args) {
+        
+        String mageName = JOptionPane.showInputDialog("Enter Mage’s name:");
+        String warriorName = JOptionPane.showInputDialog("Enter Warrior’s name:");
+
+       
+        Mage mage = new Mage(mageName);
+        Warrior warrior = new Warrior(warriorName);
+
+        JOptionPane.showMessageDialog(null, "Game starts! Both have 100 HP.");
+
+        
+        while (mage.isAlive() && warrior.isAlive()) {
+
+           
+            String[] mageOptions = {"Fireball (Attack)", "Secret Power (Special Move)"};
+            int mageMove = JOptionPane.showOptionDialog(null,
+                    mage.name + "'s Turn: Choose your move",
+                    "Mage's Move",
+                    JOptionPane.DEFAULT_OPTION, JOptionPane.QUESTION_MESSAGE,
+                    null, mageOptions, mageOptions[0]);
+
+            if (mageMove == 0) {
+                mage.attack(warrior);
+            } else {
+                mage.specialMove(warrior);
+            }
+
+            if (!warrior.isAlive()) break;
+
+            
+            String[] warriorOptions = {"Sword Slash (Attack)", "Shield Bash (Special Move)"};
+            int warriorMove = JOptionPane.showOptionDialog(null,
+                    warrior.name + "'s Turn: Choose your move",
+                    "Warrior's Move",
+                    JOptionPane.DEFAULT_OPTION, JOptionPane.QUESTION_MESSAGE,
+                    null, warriorOptions, warriorOptions[0]);
+
+            if (warriorMove == 0) {
+                warrior.attack(mage);
+            } else {
+                warrior.specialMove(mage);
+            }
+
+            if (!mage.isAlive()) break;
+
+         
+            JOptionPane.showMessageDialog(null,
+                    "HP Status:\n" +
+                    mage.name + " (Mage): " + mage.hp + " HP\n" +
+                    warrior.name + " (Warrior): " + warrior.hp + " HP");
+        }
+
+        
+        String winner = mage.isAlive() ? mage.name : warrior.name;
+        JOptionPane.showMessageDialog(null, "🎉 " + winner + " wins the battle!");
+    }
+}
